@@ -8,10 +8,6 @@ Install guide: https://docs.nvidia.com/datacenter/kubernetes/kubernetes-install-
 
 Hyperparameters for a machine learning model are options not optimized or learned during the training phase. Hyperparameters typically include options such as learning rate schedule, batch size, data augmentation options and others. Each option greatly affects the model accuracy on the same dataset. Two of the most common strategies for selecting the best hyperparameters for a model are grid search and random search. In the grid search method  (also known as the parameter sweep method) you define the search space by enumerating all possible hyperparameter values and train a model on each set of values. Random search only select random sets of values sampled from the exhaustive set. The results of each training run are then validated against a separate validation set.
 
-A large body of literature exists discussing hyperparameters optimization. Other more sophisticated approaches can be used, such as bayesian optimization. However, when starting from scratch, random search and grid search are still the best approaches to narrow down the search space. 
-
-The challenge with grid search and random search is that introducing more than a few hyperparameters and options quickly results in a combinatorial explosion. Add to this the training time required for each hyperparameter set and the problem quickly becomes intractable. Thankfully, this is also an embarrassingly parallel problem since each training run can be performed independently of others.
-
 This repository includes kubernetes specification files and training scripts for running running large-scale hyperparameter search experiments using Kubernetes on a GPU cluster as shown in the figure below.
 The framework is flexible and allows you to do grid search or random search and implements “version everything” so you can trace back all previously run experiments.
 
