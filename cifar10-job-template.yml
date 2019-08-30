@@ -20,12 +20,14 @@ spec:
            value: "$ITEM"
          command: ["bash"]
          args: ["-c","python cifar10_train.py"]
-         computeResourceRequests: ["nvidia-gpu"]
          volumeMounts:
          - name: cifar10-training
            mountPath: /cifar10-training
          - name: cifar10-dataset
            mountPath: /datasets
+         resources:
+           limits:
+             nvidia.com/gpu: 1
       volumes:
       - name: cifar10-training
         gitRepo:
@@ -36,8 +38,3 @@ spec:
         nfs:
           server: 10.110.114.22
           path: /home/sprasanna/Projects/training-datasets
-      computeResources:
-       - name: "nvidia-gpu"
-         resources:
-           limits:
-             nvidia.com/gpu: 1
